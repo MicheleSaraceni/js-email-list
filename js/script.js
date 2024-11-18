@@ -22,8 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     callMailApi();
 
-    console.log('altre cose. ...')
-
     async function callMailApi(quantity = 10) {
         const arrayMail = [];
 
