@@ -18,12 +18,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // Il DOM è ora completamente caricato
 
     const list = document.getElementById("list");
+    const btn = document.querySelector(".btn");
     console.log(list);
 
-    callMailApi();
+    btn.addEventListener("click", () => callMailApi());
+
 
     async function callMailApi(quantity = 10) {
         const arrayMail = [];
+        list.innerHTML = ``;
 
         for (let i = 0; i < quantity; i++) {
             await axios
