@@ -14,18 +14,36 @@ generare 10 indirizzi email e stamparli in pagina all'interno di una lista.
 
 /***********************************************************/
 
-const list = document.getElementById("list");
-console.log(list);
-let arrayMail = [];
+document.addEventListener("DOMContentLoaded", () => {
+    // Il DOM è ora completamente caricato
 
-for (let i = 0; i <= 10; i++){
-  axios
-    .get("https://flynn.boolean.careers/exercises/api/random/mail")
-    .then((mail) => {
-        console.log(mail.data.response);
-        arrayMail.push = mail.data.response;
-      });
-}
-console.log(arrayMail);
+    const list = document.getElementById("list");
+    console.log(list);
 
-//`<li>${mail}</li>`;
+    callMailApi();
+
+    console.log('altre cose. ...')
+
+    async function callMailApi(quantity = 10) {
+        const arrayMail = [];
+
+        for (let i = 0; i < quantity; i++) {
+            await axios
+                .get("https://flynn.boolean.careers/exercises/api/random/mail").then((mail) => {
+                    console.log(mail.data.response);
+                    arrayMail.push(mail.data.response);
+                });
+        }
+
+        console.log(arrayMail.length);
+        console.log(arrayMail);
+
+        for (let i = 0; i < arrayMail.length; i++) {
+            /* const newListItem = document.createElement("li");
+            newListItem.textContent = arrayMail[i];
+            list.appendChild(newListItem); */
+            list.innerHTML += `<li>${arrayMail[i]}</li>`;
+        };
+    }
+});
+
